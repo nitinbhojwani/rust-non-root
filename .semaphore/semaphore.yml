@@ -14,6 +14,6 @@ blocks:
       jobs:
         - name: Build and Push Docker images
           commands:
-            - python3 build-push-images.py
+            - python3 build_push_images.py
       secrets:
         - name: Docker Hub
