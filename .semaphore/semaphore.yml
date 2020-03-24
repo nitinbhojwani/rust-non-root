@@ -1,0 +1,19 @@
+version: v1.0
+name: First pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: Build and Push
+    task:
+      prologue:
+        commands:
+          - checkout
+          - echo $DOCKER_PASSWORD | docker login --username "$DOCKER_USERNAME" --password-stdin
+      jobs:
+        - name: Build and Push Docker images
+          commands:
+            - python3 build-push-images.py
+      secrets:
+        - name: Docker Hub
